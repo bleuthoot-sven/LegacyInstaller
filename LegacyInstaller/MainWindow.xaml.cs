@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +25,12 @@ namespace LegacyInstaller
         private SteamProcess _steamProcess = null;
         public MainWindow()
         {
+            WindowsPrincipal principal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
+            if (principal.IsInRole(WindowsBuiltInRole.Administrator) == false)
+            {
+                MessageBox.Show("Please run this application in Administrator");
+            }
+
             InitializeComponent();
             var bsVersionsStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(VersionsResourcePath);
             string versionList = new StreamReader(bsVersionsStream).ReadToEnd();
