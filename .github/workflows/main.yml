@@ -10,12 +10,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup msbuild
-      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '6.0.x'
     - name: Install Dependencies
-      run: msbuild -t:restore
+      run: dotnet restore
     - name: Build Project
-      run: msbuild LegacyInstaller.sln /t:Build /p:Configuration=Debug
+      run: dotnet build .\LegacyInstaller.sln --configuration Debug
     - name: Resolve Short Commit Hash
       if: startsWith(github.ref, 'refs/tags/') == false
       id: get_hash
@@ -26,4 +28,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: LegacyInstaller-${{ steps.get_hash.outputs.hash }}
-        path: ./LegacyInstaller/bin/Debug/
+        path: ./LegacyInstaller/bin/x86/Debug/net6.0-windows

@@ -11,12 +11,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup msbuild
-      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '6.0.x'
     - name: Install Dependencies
-      run: msbuild -t:restore
+      run: dotnet restore
     - name: Build Project
-      run: msbuild LegacyInstaller.sln /t:Build /p:Configuration=Release
+      run: dotnet publish -p:PublishSingleFile=true -p:PublishReadyToRun=true -r win-x86 -c Release --self-contained true
     - name: Resolve Short Commit Hash
       if: startsWith(github.ref, 'refs/tags/')
       id: get_hash
@@ -27,7 +29,7 @@ jobs:
       with:
         type: 'zip'
         filename: LegacyInstaller-${{ steps.get_hash.outputs.hash }}.zip
-        path: ./LegacyInstaller/bin/Release/
+        path: ./LegacyInstaller/bin/x86/Release/net6.0-windows/win-x86/publish/
     - name: Create release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
