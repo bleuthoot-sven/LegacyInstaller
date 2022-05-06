@@ -25,11 +25,11 @@ namespace LegacyInstaller
         private SteamProcess _steamProcess = null;
         public MainWindow()
         {
-            WindowsPrincipal principal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
-            if (principal.IsInRole(WindowsBuiltInRole.Administrator) == false)
-            {
-                MessageBox.Show("Please run this application in Administrator");
-            }
+            //WindowsPrincipal principal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
+            //if (principal.IsInRole(WindowsBuiltInRole.Administrator) == false)
+            //{
+            //    MessageBox.Show("Please run this application in Administrator");
+            //}
 
             InitializeComponent();
             var bsVersionsStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(VersionsResourcePath);
