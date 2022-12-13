@@ -318,5 +318,15 @@
     "BSVersion": "1.26.0",
     "ManifestId": "3634450655207470002",
     "ReleaseURL": "https://steamcommunity.com/games/620980/announcements/detail/3414318646334948892"
+  },
+  {
+    "BSVersion": "1.26.1",
+    "ManifestId": "1251433115430405795",
+    "ReleaseURL": "https://steamcommunity.com/games/620980/announcements/detail/3414318646334948892"
+  },
+  {
+    "BSVersion": "1.27.0",
+    "ManifestId": "3485516174915301618",
+    "ReleaseURL": "https://store.steampowered.com/news/app/620980/view/3629368753553708496"
   }
 ]
