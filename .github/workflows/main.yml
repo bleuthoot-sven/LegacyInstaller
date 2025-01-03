@@ -25,7 +25,7 @@ jobs:
       run: echo ::set-output name=hash::`git rev-parse --short HEAD`
     - name: Upload LegacyInstaller Build
       if: startsWith(github.ref, 'refs/tags/') == false
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: LegacyInstaller-${{ steps.get_hash.outputs.hash }}
         path: ./LegacyInstaller/bin/x86/Debug/net6.0-windows
